@@ -1,0 +1,53 @@
+import React from 'react';
+import { FaAd, FaDoorOpen, FaIndustry, FaTractor } from 'react-icons/fa'; // Changed FaChair to FaTractor
+import weldingImage from '../assets/images/welding.jpg';
+
+const Hero = () => {
+  const services = [
+    { icon: <FaDoorOpen />, text: 'Security Doors & Gates' },
+    { icon: <FaIndustry />, text: 'Balustrades & Railings' },
+    { icon: <FaAd />, text: 'Billboards & Signage' },
+    { icon: <FaTractor />, text: 'Agricultural Implements' }, // Updated icon and text
+  ];
+
+  return (
+    <section className="relative min-h-screen bg-[#29629b] text-white overflow-hidden">
+      {/* Background Image */}
+      <div className="absolute inset-0">
+        <img
+          src={weldingImage}
+          alt="Metal welding with sparks"
+          className="w-full h-full object-cover"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="relative container mx-auto px-4 py-20 flex flex-col justify-center min-h-screen">
+        <div className="max-w-3xl backdrop-blur-sm bg-black/30 p-8 rounded-lg" data-aos="fade-up">
+          <h1 className="text-4xl md:text-5xl font-bold mb-6">
+            Excellence in <span className="text-cyan-300">Metal Fabrication</span>
+          </h1>
+          <p className="text-base md:text-lg mb-6">
+            From agricultural machinery to custom metal works - delivering quality craftsmanship for all your fabrication needs
+          </p>
+        </div>
+
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8" data-aos="fade-up" data-aos-delay="200">
+          {services.map((service, index) => (
+            <div 
+              key={index}
+              className="bg-black/40 backdrop-blur-sm rounded-lg p-6 text-center hover:bg-black/50 transition-all cursor-pointer"
+            >
+              <div className="text-3xl mb-3 flex justify-center text-cyan-300">
+                {service.icon}
+              </div>
+              <p className="font-semibold">{service.text}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  );
+};
+
+export default Hero;
