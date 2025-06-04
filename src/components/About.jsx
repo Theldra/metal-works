@@ -1,6 +1,10 @@
 import React from 'react';
 import { FaHeart, FaLeaf, FaTools, FaUsers } from 'react-icons/fa';
 import ceo from '../assets/images/rita.jpeg'; 
+import workshop1 from '../assets/images/atshop.jpg';
+import workshop2 from '../assets/images/melt.jpg';
+import workshop3 from '../assets/images/btyre.jpg';
+import workshop4 from '../assets/images/bproc.jpg';
 
 const About = () => {
   const features = [
@@ -23,6 +27,29 @@ const About = () => {
       icon: <FaHeart />,
       title: "Community Impact",
       description: "Enhancing lives of smallholder farmers through innovative solutions"
+    }
+  ];
+
+  const workshopImages = [
+    {
+      src: workshop1,
+      alt: "Welding Process",
+      caption: "Precision welding for agricultural machinery"
+    },
+    {
+      src: workshop2,
+      alt: "Metal Fabrication",
+      caption: "Custom metal work fabrication"
+    },
+    {
+      src: workshop3,
+      alt: "Quality Inspection",
+      caption: "Ensuring quality standards"
+    },
+    {
+      src: workshop4,
+      alt: "Final Assembly",
+      caption: "Assembling farm equipment"
     }
   ];
 
@@ -83,6 +110,34 @@ const About = () => {
               <p className="text-lg font-semibold">Rita Ohenewaa Asimpah</p>
               <p className="opacity-80">Founder & CEO</p>
             </div>
+          </div>
+        </div>
+
+        <div className="mt-16" data-aos="fade-up">
+          <h3 className="text-3xl font-bold text-center mb-8 text-gray-800">
+            Our Workshop <span className="text-cyan-300">in Action</span>
+          </h3>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {workshopImages.map((image, index) => (
+              <div 
+                key={index}
+                className="relative group overflow-hidden rounded-xl shadow-lg"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                  <p className="text-white p-4 text-sm">
+                    {image.caption}
+                  </p>
+                </div>
+              </div>
+            ))}
           </div>
         </div>
       </div>

@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import 'aos/dist/aos.css';
-
 import Aos from 'aos';
 import { FaBicycle, FaChair, FaColumns, FaDoorOpen, FaIndustry, FaSeedling, FaTools, FaTractor, FaWarehouse } from 'react-icons/fa';
+
 
 const Products = () => {
   const [activeCategory, setActiveCategory] = useState('all');
@@ -40,7 +40,7 @@ const Products = () => {
       description: "Multipurpose cargo farm bike for transportation",
       status: "Market Testing",
       category: "agriculture",
-      image: "/images/cargo-bike.jpg"
+      image: "/images/quadb.jpg"
     },
     {
       icon: <FaSeedling />,
@@ -65,7 +65,7 @@ const Products = () => {
       description: "Outdoor metal furniture for gardens and patios",
       status: "Available",
       category: "furniture",
-      image: "/images/garden-furniture.jpg"
+      image: "/images/furn.jpg"
     },
     // Security Products
     {

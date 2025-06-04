@@ -1,6 +1,6 @@
 // components/Footer.jsx
 import React from 'react';
-import { FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhone, FaTwitter } from 'react-icons/fa';
+import { FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaTwitter } from 'react-icons/fa';
 
 const Footer = () => {
   return (
@@ -45,7 +45,7 @@ const Footer = () => {
             <h4 className="text-xl font-semibold mb-4">Contact Info</h4>
             <div className="space-y-2 text-gray-100">
               <div className="flex items-center">
-                <FaPhone className="mr-2" />
+                <FaPhoneAlt className="mr-2" />
                 <span>+233 54 105 3744</span>
               </div>
               <div className="flex items-center">
