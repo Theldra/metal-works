@@ -1,8 +1,10 @@
-// pages/Shop.jsx
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import { FaEye, FaFilter, FaSearch, FaShoppingCart } from 'react-icons/fa';
 import ProductModal from '../components/ProductModal';
+
+import quaBikeImg from "../assets/images/quadb.jpg";
+
 
 const Shop = () => {
   const productsList = [
@@ -22,7 +24,7 @@ const Shop = () => {
       name: "Cargo Quad-cycle",
       price: 2500,
       category: "Agriculture",
-      image: "/api/placeholder/300/250",
+      image: quaBikeImg,
       description: "Multipurpose cargo farm bike for transportation and farming",
       features: ["High load capacity", "All-terrain wheels", "Weather resistant"],
       inStock: false,

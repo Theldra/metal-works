@@ -1,12 +1,19 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
-import { FaBicycle, FaChair, FaColumns, FaDoorOpen, FaIndustry, FaSeedling, FaTools, FaTractor, FaWarehouse } from 'react-icons/fa';
 
+import guitarImg from "../assets/images/guitar.jpg";
+import furnImg from "../assets/images/furn.jpg";
+import sculpImg from "../assets/images/sculpture.jpg";
+import chainImg from "../assets/images/sculp.jpg";
+import frameImg from "../assets/images/frame.jpg";
+import quadBikeImg from "../assets/images/quadb.jpg";
+import benchImg from "../assets/images/chcab.jpg";
+import drummerImg from "../assets/images/art.jpg"; 
+import studyImg from "../assets/images/desk.jpg";
+import { FaCouch, FaDesktop, FaHammer, FaHome, FaPaintBrush, FaPalette, FaTractor, FaTrophy } from 'react-icons/fa';
 
 const Products = () => {
-  const [activeCategory, setActiveCategory] = useState('all');
-
   useEffect(() => {
     Aos.init({
       duration: 1000,
@@ -15,148 +22,87 @@ const Products = () => {
     });
   }, []);
 
-  const categories = [
-    { id: 'all', name: 'All Products' },
-    { id: 'agriculture', name: 'Agricultural' },
-    { id: 'furniture', name: 'Furniture' },
-    { id: 'security', name: 'Security' },
-    { id: 'construction', name: 'Construction' },
-    { id: 'industrial', name: 'Industrial' }
-  ];
-
   const products = [
-    // Agricultural Products
     {
-      icon: <FaTractor />,
-      title: "Maize Planter",
-      description: "Manual maize planting machine for efficient seed placement",
-      status: "Available",
-      category: "agriculture",
-      image: "/images/maize-planter.jpg"
+      icon: <FaTrophy className="w-6 h-6" />,
+      title: "Metal Sculptures",
+      description: "Unique artistic metal sculptures and decorative pieces",
+      status: "Custom Order",
+      image: guitarImg
     },
     {
-      icon: <FaBicycle />,
-      title: "Cargo Quad-cycle",
-      description: "Multipurpose cargo farm bike for transportation",
-      status: "Market Testing",
-      category: "agriculture",
-      image: "/images/quadb.jpg"
+      icon: <FaHome className="w-6 h-6" />,
+      title: "Modern Furniture",
+      description: "Contemporary metal furniture designs for home and office",
+      status: "Available",
+      image: furnImg
     },
     {
-      icon: <FaSeedling />,
-      title: "Fertilizer Spreader",
-      description: "Mechanical fertilizer spreading equipment",
-      status: "Available",
-      category: "agriculture",
-      image: "/images/spreader.jpg"
-    },
-    // Furniture Products
-    {
-      icon: <FaChair />,
-      title: "Metal Dining Set",
-      description: "Modern metal dining table and chairs set",
-      status: "Available",
-      category: "furniture",
-      image: "/images/dining-set.jpg"
+      icon: <FaTractor className="w-6 h-6" />,
+      title: "Agricultural Equipment",
+      description: "BENTUMA - Innovative quad-cargo cycle for efficient farm produce harvesting and transportation",
+      status: "Made to Order",
+      image: quadBikeImg
     },
     {
-      icon: <FaChair />,
-      title: "Garden Furniture",
-      description: "Outdoor metal furniture for gardens and patios",
+      icon: <FaPalette className="w-6 h-6" />,
+      title: "Wall Art",
+      description: "Metal wall decorations and artistic installations",
       status: "Available",
-      category: "furniture",
-      image: "/images/furn.jpg"
-    },
-    // Security Products
-    {
-      icon: <FaDoorOpen />,
-      title: "Security Gates",
-      description: "Heavy-duty security gates with advanced locking",
-      status: "Available",
-      category: "security",
-      image: "/images/security-gates.jpg"
+      image: sculpImg
     },
     {
-      icon: <FaDoorOpen />,
-      title: "Burglar Proofing",
-      description: "Window and door security installations",
-      status: "Available",
-      category: "security",
-      image: "/images/burglar-proof.jpg"
-    },
-    // Construction Products
-    {
-      icon: <FaColumns />,
-      title: "Balustrades",
-      description: "Decorative balustrades for stairs and balconies",
-      status: "Available",
-      category: "construction",
-      image: "/images/balustrades.jpg"
+      icon: <FaHammer className="w-6 h-6" />,
+      title: "Functional Art",
+      description: "Artistic yet functional metal creations for everyday use",
+      status: "Custom Order",
+      image: chainImg
     },
     {
-      icon: <FaWarehouse />,
-      title: "Steel Structures",
-      description: "Custom steel structures for buildings",
+      icon: <FaPaintBrush className="w-6 h-6" />,
+      title: "Architectural Elements",
+      description: "Decorative metal elements for architectural applications",
       status: "Available",
-      category: "construction",
-      image: "/images/steel-structures.jpg"
-    },
-    // Industrial Products
-    {
-      icon: <FaIndustry />,
-      title: "Industrial Equipment",
-      description: "Custom industrial machinery fabrication",
-      status: "Available",
-      category: "industrial",
-      image: "/images/industrial.jpg"
+      image: frameImg
     },
     {
-      icon: <FaTools />,
-      title: "Machine Parts",
-      description: "Replacement parts for industrial machines",
-      status: "Available",
-      category: "industrial",
-      image: "/images/machine-parts.jpg"
-    }
+    icon: <FaCouch className="w-6 h-6" />,
+    title: "Outdoor Furniture",
+    description: "Handcrafted metal-wood fusion bench for elegant outdoor relaxation",
+    status: "Available",
+    image: benchImg
+  },
+  {
+    icon: <FaPalette className="w-6 h-6" />,
+    title: "Cultural Artwork",
+    description: "African Drummer - A majestic metal-wood sculpture celebrating African heritage, featuring a traditionally adorned woman drummer on a pedestal",
+    status: "Custom Order",
+    image: drummerImg
+  },
+  {
+    icon: <FaDesktop className="w-6 h-6" />,
+    title: "Study Furniture",
+    description: "Compact metal-wood study station featuring integrated lamp, pen holder, and clock for optimal productivity",
+    status: "Made to Order",
+    image: studyImg
+  }
   ];
-
-  const filteredProducts = activeCategory === 'all' 
-    ? products 
-    : products.filter(product => product.category === activeCategory);
 
   return (
-    <section id="products" className="py-20 bg-white">
+    <section id="products" className="py-20 bg-gray-50">
       <div className="container mx-auto px-4">
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-4xl md:text-4xl font-bold text-gray-800 mb-6">
-            Our <span className="text-cyan-300">Products </span>
+          <h2 className="text-4xl font-bold text-gray-800 mb-6">
+            Innovative <span className="text-cyan-500">Creations</span>
           </h2>
-          <p className="text-xl text-gray-600 max-w-3xl mx-auto mb-8">
-            From agricultural machinery to custom metal works, we deliver quality fabrication 
-            solutions tailored to your specific needs.
+          <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+            Discover our diverse collection of metal works, where artistry meets functionality. 
+            Each piece represents our commitment to innovative design and superior craftsmanship.
           </p>
-
-          <div className="flex flex-wrap justify-center gap-4 mb-12" data-aos="fade-up" data-aos-delay="100">
-            {categories.map((category, index) => (
-              <button
-                key={category.id}
-                onClick={() => setActiveCategory(category.id)}
-                className={`px-6 py-2 rounded-full font-semibold transition-all
-                  ${activeCategory === category.id
-                    ? 'bg-blue-600 text-white'
-                    : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
-                  }`}
-                data-aos="zoom-in"
-                data-aos-delay={index * 100}
-              >
-                {category.name}
-              </button>
-            ))}
-          </div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {filteredProducts.map((product, index) => (
+          {products.map((product, index) => (
             <div 
               key={index}
               className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2"
@@ -167,14 +113,20 @@ const Products = () => {
                 <img
                   src={product.image}
                   alt={product.title}
-                  className="w-full h-full object-cover"
-                  data-aos="zoom-in"
-                  data-aos-delay={index * 150}
+                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
+                  style={{
+                    backgroundColor: '#f8f9fa',
+                    padding: '0.5rem'
+                  }}
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/400x300?text=Product+Image';
+                    console.error(`Failed to load image for ${product.title}`);
+                  }}
                 />
               </div>
               <div className="p-6">
-                <div className="flex items-center mb-4" data-aos="fade-right" data-aos-delay={index * 200}>
-                  <div className="text-3xl text-blue-600 mr-3">
+                <div className="flex items-center mb-4">
+                  <div className="text-cyan-500 mr-3">
                     {product.icon}
                   </div>
                   <div>
@@ -182,18 +134,27 @@ const Products = () => {
                     <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
                       product.status === 'Available' 
                         ? 'bg-green-100 text-green-800' 
-                        : 'bg-yellow-100 text-yellow-800'
+                        : 'bg-amber-100 text-amber-800'
                     }`}>
                       {product.status}
                     </span>
                   </div>
                 </div>
-                <p className="text-gray-600" data-aos="fade-up" data-aos-delay={index * 250}>
+                <p className="text-gray-600">
                   {product.description}
                 </p>
               </div>
             </div>
           ))}
+        </div>
+
+        <div className="text-center mt-12" data-aos="fade-up">
+          <button 
+            onClick={() => window.location.href = '/catalog'}
+            className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold transition-all"
+          >
+            View Full Catalog
+          </button>
         </div>
       </div>
     </section>

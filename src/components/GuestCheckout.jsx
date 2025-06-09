@@ -6,7 +6,6 @@ import { FaCreditCard, FaLock, FaMobile, FaMoneyBillWave } from 'react-icons/fa'
 const useCheckoutForm = () => {
   const [currentStep, setCurrentStep] = useState(1);
   const [formData, setFormData] = useState({
-    // Contact Information
     firstName: '',
     lastName: '',
     email: '',

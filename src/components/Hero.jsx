@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaAd, FaDoorOpen, FaIndustry, FaTractor } from 'react-icons/fa'; // Changed FaChair to FaTractor
+import { FaAd, FaBookOpen, FaDoorOpen, FaIndustry, FaShoppingCart, FaTractor } from 'react-icons/fa';
 import weldingImage from '../assets/images/welding.jpg';
 
 const Hero = () => {
@@ -7,7 +7,7 @@ const Hero = () => {
     { icon: <FaDoorOpen />, text: 'Security Doors & Gates' },
     { icon: <FaIndustry />, text: 'Balustrades & Railings' },
     { icon: <FaAd />, text: 'Billboards & Signage' },
-    { icon: <FaTractor />, text: 'Agricultural Implements' }, // Updated icon and text
+    { icon: <FaTractor />, text: 'Agricultural Implements' },
   ];
 
   return (
@@ -27,9 +27,30 @@ const Hero = () => {
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Excellence in <span className="text-cyan-300">Metal Fabrication</span>
           </h1>
-          <p className="text-base md:text-lg mb-6">
+          <p className="text-base md:text-lg mb-8">
             From agricultural machinery to custom metal works - delivering quality craftsmanship for all your fabrication needs
           </p>
+          
+          {/* Two CTAs side by side */}
+          <div className="flex flex-col sm:flex-row gap-4">
+            {/* Primary CTA - View Catalog */}
+            <button 
+              className="group flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
+              onClick={() => window.location.href = '#products'}
+            >
+              View Catalog
+              <FaBookOpen className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
+            </button>
+            
+            {/* Secondary CTA - Store */}
+            <button 
+              className="group flex items-center justify-center gap-2 bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
+              onClick={() => window.location.href = '/shop'}
+            >
+              Visit Store
+              <FaShoppingCart className="w-5 h-5" />
+            </button>
+          </div>
         </div>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 mt-8" data-aos="fade-up" data-aos-delay="200">
