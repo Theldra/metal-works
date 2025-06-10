@@ -1,4 +1,3 @@
-// components/Footer.jsx
 import React from 'react';
 import { FaFacebook, FaInstagram, FaLinkedin, FaMapMarkerAlt, FaPhoneAlt, FaTwitter } from 'react-icons/fa';
 
@@ -28,6 +27,7 @@ const Footer = () => {
               <li><a href="#products" className="hover:text-cyan-300 transition-colors">Products</a></li>
               <li><a href="#contact" className="hover:text-cyan-300 transition-colors">Contact</a></li>
               <li><a href="/shop" className="hover:text-cyan-300 transition-colors">Shop</a></li>
+              <li><a href="/blog" className="hover:text-cyan-300 transition-colors">Blog</a></li>
             </ul>
           </div>
 

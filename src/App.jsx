@@ -11,6 +11,7 @@ import Shop from './pages/Shop';
 import GuestCheckout from './components/GuestCheckout';
 import Footer from './components/Footer';
 import ShoppingCart from './components/ShoppingCart';
+import Blog from './components/Blog';
 
 function App() {
   useEffect(() => {
@@ -28,6 +29,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/shop" element={<Shop />} />
+           <Route path="/blog" element={<Blog />} />
             <Route path="/checkout" element={<GuestCheckout />} />
           </Routes>
           <Footer />

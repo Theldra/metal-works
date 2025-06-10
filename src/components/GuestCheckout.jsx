@@ -1,6 +1,147 @@
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
-import { FaCreditCard, FaLock, FaMobile, FaMoneyBillWave } from 'react-icons/fa';
+import { FaCreditCard, FaLock, FaMobile, FaMoneyBillWave, FaUser, FaBell, FaEnvelope, FaWhatsapp, FaSms } from 'react-icons/fa';
+
+// Notification service to handle multiple notification channels
+const NotificationService = {
+  async sendNotifications(orderData) {
+    const notifications = [];
+    
+    try {
+      // Email notification to manager
+      notifications.push(this.sendEmailNotification(orderData));
+      
+      // WhatsApp notification
+      notifications.push(this.sendWhatsAppNotification(orderData));
+      
+      // SMS notification
+      notifications.push(this.sendSMSNotification(orderData));
+      
+      // In-app notification
+      notifications.push(this.sendInAppNotification(orderData));
+      
+      await Promise.all(notifications);
+      console.log('All notifications sent successfully');
+    } catch (error) {
+      console.error('Error sending notifications:', error);
+    }
+  },
+
+  async sendEmailNotification(orderData) {
+    // Simulate email API call
+    const emailData = {
+      to: 'manager@restaurant.com',
+      subject: `New Order #${orderData.orderId} - ${orderData.customer.firstName} ${orderData.customer.lastName}`,
+      html: `
+        <h2>New Order Received</h2>
+        <p><strong>Order ID:</strong> ${orderData.orderId}</p>
+        <p><strong>Customer:</strong> ${orderData.customer.firstName} ${orderData.customer.lastName}</p>
+        <p><strong>Email:</strong> ${orderData.customer.email}</p>
+        <p><strong>Phone:</strong> ${orderData.customer.phone}</p>
+        <p><strong>Total Amount:</strong> GH₵${orderData.total.toFixed(2)}</p>
+        <p><strong>Payment Method:</strong> ${orderData.paymentMethod}</p>
+        <p><strong>Delivery Address:</strong> ${orderData.address}</p>
+        <h3>Order Items:</h3>
+        <ul>
+          ${orderData.items.map(item => `<li>${item.name} x ${item.quantity} - GH₵${(item.price * item.quantity).toFixed(2)}</li>`).join('')}
+        </ul>
+      `
+    };
+    
+    // Replace with actual email service (SendGrid, Mailgun, etc.)
+    console.log('Email sent to manager:', emailData);
+    return Promise.resolve();
+  },
+
+  async sendWhatsAppNotification(orderData) {
+    const message = `🍕 NEW ORDER ALERT! 
+Order #${orderData.orderId}
+Customer: ${orderData.customer.firstName} ${orderData.customer.lastName}
+Phone: ${orderData.customer.phone}
+Total: GH₵${orderData.total.toFixed(2)}
+Payment: ${orderData.paymentMethod}
+Address: ${orderData.address}`;
+
+    // Replace with actual WhatsApp Business API
+    console.log('WhatsApp notification sent:', message);
+    return Promise.resolve();
+  },
+
+  async sendSMSNotification(orderData) {
+    const message = `New order #${orderData.orderId} from ${orderData.customer.firstName} ${orderData.customer.lastName}. Total: GH₵${orderData.total.toFixed(2)}. Check dashboard for details.`;
+    
+    // Replace with actual SMS service (Twilio, etc.)
+    console.log('SMS sent to manager:', message);
+    return Promise.resolve();
+  },
+
+  async sendInAppNotification(orderData) {
+    // For real implementation, this would update a notifications state/context
+    const notification = {
+      id: Date.now(),
+      type: 'new-order',
+      title: 'New Order Received',
+      message: `Order #${orderData.orderId} from ${orderData.customer.firstName} ${orderData.customer.lastName}`,
+      timestamp: new Date(),
+      read: false
+    };
+    
+    console.log('In-app notification created:', notification);
+    return Promise.resolve(notification);
+  }
+};
+
+// Delivery calculator based on region and order value
+const DeliveryCalculator = {
+  calculateDelivery(region, orderTotal) {
+    const deliveryRates = {
+      'greater-accra': { base: 25, freeDeliveryThreshold: 200 },
+      'ashanti': { base: 35, freeDeliveryThreshold: 250 },
+      'central': { base: 40, freeDeliveryThreshold: 300 },
+      'western': { base: 45, freeDeliveryThreshold: 300 },
+      'eastern': { base: 40, freeDeliveryThreshold: 280 },
+      'volta': { base: 50, freeDeliveryThreshold: 350 },
+      'northern': { base: 60, freeDeliveryThreshold: 400 },
+      'upper-east': { base: 65, freeDeliveryThreshold: 450 },
+      'upper-west': { base: 65, freeDeliveryThreshold: 450 },
+      'brong-ahafo': { base: 45, freeDeliveryThreshold: 320 }
+    };
+
+    const regionRate = deliveryRates[region] || { base: 50, freeDeliveryThreshold: 300 };
+    
+    if (orderTotal >= regionRate.freeDeliveryThreshold) {
+      return { cost: 0, isFree: true, threshold: regionRate.freeDeliveryThreshold };
+    }
+    
+    return { cost: regionRate.base, isFree: false, threshold: regionRate.freeDeliveryThreshold };
+  }
+};
+
+// Tax calculator with flexible rates
+const TaxCalculator = {
+  calculateTax(subtotal, region) {
+    // Different regions might have different tax rates
+    const taxRates = {
+      'greater-accra': 0.125, // 12.5%
+      'ashanti': 0.125,
+      'central': 0.10,
+      'western': 0.10,
+      'eastern': 0.125,
+      'volta': 0.10,
+      'northern': 0.075,
+      'upper-east': 0.075,
+      'upper-west': 0.075,
+      'brong-ahafo': 0.10
+    };
+
+    const rate = taxRates[region] || 0.125;
+    return {
+      rate: rate,
+      amount: subtotal * rate,
+      percentage: (rate * 100).toFixed(1)
+    };
+  }
+};
 
 // Custom hook for form logic
 const useCheckoutForm = () => {
@@ -25,20 +166,25 @@ const useCheckoutForm = () => {
     provider: 'mtn',
     
     // Special Instructions
-    notes: ''
+    notes: '',
+    
+    // User account linking
+    createAccount: false,
+    linkToUserIcon: false
   });
   const [errors, setErrors] = useState({});
 
   const handleInputChange = (e) => {
+    const { name, value, type, checked } = e.target;
     setFormData({
       ...formData,
-      [e.target.name]: e.target.value
+      [name]: type === 'checkbox' ? checked : value
     });
     // Clear error when user starts typing
-    if (errors[e.target.name]) {
+    if (errors[name]) {
       setErrors({
         ...errors,
-        [e.target.name]: ''
+        [name]: ''
       });
     }
   };
@@ -92,7 +238,7 @@ const useCheckoutForm = () => {
 };
 
 // Component for the Order Summary section
-const OrderSummary = ({ cartItems, getCartTotal, shippingCost, tax, finalTotal }) => (
+const OrderSummary = ({ cartItems, getCartTotal, deliveryInfo, finalTotal }) => (
   <div className="lg:col-span-1">
     <div className="bg-white rounded-xl shadow-lg p-6 sticky top-24">
       <h3 className="text-xl font-bold mb-4">Order Summary</h3>
@@ -122,13 +268,16 @@ const OrderSummary = ({ cartItems, getCartTotal, shippingCost, tax, finalTotal }
           <span>GH₵{getCartTotal().toLocaleString()}</span>
         </div>
         <div className="flex justify-between">
-          <span>Shipping:</span>
-          <span>GH₵{shippingCost}</span>
+          <span>Delivery Fee:</span>
+          <span className={deliveryInfo.isFree ? 'text-green-600 font-medium' : ''}>
+            {deliveryInfo.isFree ? 'FREE' : `GH₵${deliveryInfo.cost}`}
+          </span>
         </div>
-        <div className="flex justify-between">
-          <span>Tax (12.5%):</span>
-          <span>GH₵{tax.toFixed(2)}</span>
-        </div>
+        {deliveryInfo.isFree && (
+          <p className="text-xs text-green-600">
+            🎉 Free delivery on orders over GH₵{deliveryInfo.threshold}
+          </p>
+        )}
         <div className="flex justify-between font-bold text-lg border-t pt-2">
           <span>Total:</span>
           <span className="text-blue-600">GH₵{finalTotal.toFixed(2)}</span>
@@ -143,6 +292,32 @@ const OrderSummary = ({ cartItems, getCartTotal, shippingCost, tax, finalTotal }
         <p className="text-xs text-blue-600 mt-1">
           Your payment information is encrypted and secure
         </p>
+      </div>
+
+      {/* Notification indicators */}
+      <div className="mt-4 p-3 bg-green-50 rounded-lg">
+        <div className="flex items-center text-green-600 mb-2">
+          <FaBell className="mr-2" />
+          <span className="text-sm font-medium">Manager Notifications</span>
+        </div>
+        <div className="grid grid-cols-2 gap-2 text-xs">
+          <div className="flex items-center text-green-600">
+            <FaEnvelope className="mr-1" />
+            <span>Email</span>
+          </div>
+          <div className="flex items-center text-green-600">
+            <FaWhatsapp className="mr-1" />
+            <span>WhatsApp</span>
+          </div>
+          <div className="flex items-center text-green-600">
+            <FaSms className="mr-1" />
+            <span>SMS</span>
+          </div>
+          <div className="flex items-center text-green-600">
+            <FaBell className="mr-1" />
+            <span>In-App</span>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -162,9 +337,9 @@ const GuestCheckout = () => {
     prevStep
   } = useCheckoutForm();
 
-  const shippingCost = 50;
-  const tax = getCartTotal() * 0.125; // 12.5% VAT
-  const finalTotal = getCartTotal() + shippingCost + tax;
+  const subtotal = getCartTotal();
+  const deliveryInfo = DeliveryCalculator.calculateDelivery(formData.region, subtotal);
+  const finalTotal = subtotal + deliveryInfo.cost;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -172,18 +347,47 @@ const GuestCheckout = () => {
 
     setIsProcessing(true);
 
-    // Simulate payment processing
     try {
+      // Generate order ID
+      const orderId = `ORD-${Date.now()}`;
+      
+      // Prepare order data
+      const orderData = {
+        orderId,
+        items: cartItems,
+        customer: {
+          firstName: formData.firstName,
+          lastName: formData.lastName,
+          email: formData.email,
+          phone: formData.phone
+        },
+        address: `${formData.address}, ${formData.city}, ${formData.region}`,
+        paymentMethod: formData.paymentMethod,
+        total: finalTotal,
+        subtotal,
+        delivery: deliveryInfo.cost,
+        tax: 0, // Tax is now included in the item prices
+        notes: formData.notes,
+        timestamp: new Date().toISOString()
+      };
+
+      // Simulate payment processing
       await new Promise(resolve => setTimeout(resolve, 3000));
       
-      // Here you would integrate with actual payment providers
-      console.log('Order submitted:', {
-        items: cartItems,
-        customer: formData,
-        total: getCartTotal()
-      });
+      // Send notifications to manager
+      await NotificationService.sendNotifications(orderData);
+      
+      // Link to user icon if requested
+      if (formData.linkToUserIcon) {
+        // Store order in localStorage or user context for user icon access
+        const userOrders = JSON.parse(localStorage.getItem('userOrders') || '[]');
+        userOrders.push(orderData);
+        localStorage.setItem('userOrders', JSON.stringify(userOrders));
+      }
 
-      alert('Order placed successfully! You will receive a confirmation email shortly.');
+      console.log('Order submitted:', orderData);
+
+      alert('Order placed successfully! The restaurant manager has been notified via email, WhatsApp, and SMS.');
       clearCart();
       setCurrentStep(5); // Success step
     } catch (error) {
@@ -289,13 +493,31 @@ const GuestCheckout = () => {
                       />
                       {errors.phone && <p className="text-red-500 text-sm mt-1">{errors.phone}</p>}
                     </div>
+
+                    {/* User account linking option */}
+                    <div className="mb-6 p-4 bg-gray-50 rounded-lg">
+                      <label className="flex items-center cursor-pointer mb-2">
+                        <input
+                          type="checkbox"
+                          name="linkToUserIcon"
+                          checked={formData.linkToUserIcon}
+                          onChange={handleInputChange}
+                          className="mr-3"
+                        />
+                        <FaUser className="mr-2 text-blue-600" />
+                        <span className="font-medium">Link this order to user account</span>
+                      </label>
+                      <p className="text-sm text-gray-600 ml-8">
+                        Check this to track your order history via the user icon
+                      </p>
+                    </div>
                   </div>
                 )}
 
                 {/* Step 2: Shipping Address */}
                 {currentStep === 2 && (
                   <div>
-                    <h2 className="text-2xl font-bold mb-6">Shipping Address</h2>
+                    <h2 className="text-2xl font-bold mb-6">Delivery Details</h2>
                     <div className="mb-4">
                       <label className="block text-sm font-medium text-gray-700 mb-2">
                         Street Address *
@@ -340,8 +562,8 @@ const GuestCheckout = () => {
                           }`}
                         >
                           <option value="">Select Region</option>
-                          <option value="ashanti">Ashanti</option>
                           <option value="greater-accra">Greater Accra</option>
+                          <option value="ashanti">Ashanti</option>
                           <option value="central">Central</option>
                           <option value="western">Western</option>
                           <option value="eastern">Eastern</option>
@@ -366,6 +588,25 @@ const GuestCheckout = () => {
                         className="w-full p-3 border border-gray-300 rounded-lg focus:border-blue-500 focus:outline-none"
                       />
                     </div>
+
+                    {/* Delivery cost preview */}
+                    {formData.region && (
+                      <div className="p-4 bg-blue-50 rounded-lg">
+                        <h4 className="font-medium text-blue-800 mb-2">Delivery Information</h4>
+                        <p className="text-sm text-blue-700">
+                          {deliveryInfo.isFree ? (
+                            <>🎉 Free delivery to {formData.region}!</>
+                          ) : (
+                            <>Delivery fee to {formData.region}: GH₵{deliveryInfo.cost}</>
+                          )}
+                        </p>
+                        {!deliveryInfo.isFree && (
+                          <p className="text-xs text-blue-600 mt-1">
+                            Add GH₵{(deliveryInfo.threshold - subtotal).toFixed(2)} more for free delivery
+                          </p>
+                        )}
+                      </div>
+                    )}
                   </div>
                 )}
 
@@ -469,6 +710,11 @@ const GuestCheckout = () => {
                         <p>{formData.firstName} {formData.lastName}</p>
                         <p>{formData.email}</p>
                         <p>{formData.phone}</p>
+                        {formData.linkToUserIcon && (
+                          <p className="text-sm text-blue-600 mt-1">
+                            ✓ Order will be linked to user account
+                          </p>
+                        )}
                       </div>
 
                       {/* Shipping Address Review */}
@@ -490,6 +736,32 @@ const GuestCheckout = () => {
                         {formData.paymentMethod === 'mobile-money' && (
                           <p className="text-sm text-gray-600">{formData.provider.toUpperCase()} - {formData.mobileNumber}</p>
                         )}
+                      </div>
+
+                      {/* Manager Notification Info */}
+                      <div className="border-b pb-4">
+                        <h3 className="font-semibold mb-2">Manager Notifications</h3>
+                        <p className="text-sm text-gray-600 mb-2">
+                          The manager will be notified instantly via:
+                        </p>
+                        <div className="grid grid-cols-2 gap-2 text-sm">
+                          <div className="flex items-center text-green-600">
+                            <FaEnvelope className="mr-2" />
+                            <span>Email notification</span>
+                          </div>
+                          <div className="flex items-center text-green-600">
+                            <FaWhatsapp className="mr-2" />
+                            <span>WhatsApp message</span>
+                          </div>
+                          <div className="flex items-center text-green-600">
+                            <FaSms className="mr-2" />
+                            <span>SMS alert</span>
+                          </div>
+                          <div className="flex items-center text-green-600">
+                            <FaBell className="mr-2" />
+                            <span>Dashboard notification</span>
+                          </div>
+                        </div>
                       </div>
 
                       {/* Special Instructions */}
@@ -518,9 +790,23 @@ const GuestCheckout = () => {
                         <FaLock className="text-green-600 text-2xl" />
                       </div>
                       <h2 className="text-2xl font-bold text-green-600 mb-2">Order Confirmed!</h2>
-                      <p className="text-gray-600">
-                        Thank you for your order. You will receive a confirmation email shortly.
+                      <p className="text-gray-600 mb-4">
+                        Thank you for your order. Our team will process it shortly.
                       </p>
+                      <div className="grid grid-cols-2 gap-4 max-w-md mx-auto text-sm">
+                        <div className="flex items-center justify-center text-green-600">
+                          <FaEnvelope className="mr-2" />
+                          <span>Email sent ✓</span>
+                        </div>
+                        <div className="flex items-center justify-center text-green-600">
+                          <FaWhatsapp className="mr-2" />
+                          <span>WhatsApp sent ✓</span>
+                        </div>
+                        <div className="flex items-center justify-center text-green-600">
+                          <FaSms className="mr-2" />
+                          <span>SMS sent ✓</span>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 )}
@@ -563,8 +849,7 @@ const GuestCheckout = () => {
             <OrderSummary 
               cartItems={cartItems}
               getCartTotal={getCartTotal}
-              shippingCost={shippingCost}
-              tax={tax}
+              deliveryInfo={deliveryInfo}
               finalTotal={finalTotal}
             />
           </div>

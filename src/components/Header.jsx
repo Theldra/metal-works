@@ -31,6 +31,7 @@ const Header = () => {
               <a href="#about" className="hover:text-blue-300 transition-colors">About</a>
               <a href="#products" className="hover:text-blue-300 transition-colors">Products</a>
               <Link to="/shop" className="hover:text-blue-300 transition-colors">Shop</Link>
+              <Link to="/blog" className="hover:text-blue-300 transition-colors">Blog</Link>
               <a href="#contact" className="hover:text-blue-300 transition-colors">Contact</a>
             </nav>
 
