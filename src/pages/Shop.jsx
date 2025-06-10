@@ -222,8 +222,8 @@ const Shop = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-12" data-aos="fade-up">
-          <h1 className="text-4xl md:text-5xl font-bold text-cyan-300 mb-4">
-            Product Store
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-800">
+           Product <span className="text-cyan-300"> Store</span> 
           </h1>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Discover our range of agricultural machinery and custom metal fabrication products

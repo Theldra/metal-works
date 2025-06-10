@@ -108,7 +108,7 @@ const Blog = () => {
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
-            Our <span className="text-blue-600">Blog</span>
+            Our <span className="text-cyan-300">Blog</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
             Stay updated with the latest insights on agricultural innovation, women empowerment, 

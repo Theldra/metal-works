@@ -118,23 +118,29 @@ const About = () => {
             Our Workshop <span className="text-cyan-300">in Action</span>
           </h3>
           
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
             {workshopImages.map((image, index) => (
               <div 
                 key={index}
-                className="relative group overflow-hidden rounded-xl shadow-lg"
+                className="relative group overflow-hidden rounded-xl shadow-lg h-72"
                 data-aos="fade-up"
                 data-aos-delay={index * 100}
               >
                 <img
                   src={image.src}
                   alt={image.alt}
-                  className="w-full h-64 object-cover transition-transform duration-500 group-hover:scale-110"
+                  className="w-full h-full object-cover object-center transition-transform duration-500 group-hover:scale-105"
+                  onError={(e) => {
+                    e.target.src = 'https://via.placeholder.com/400x300?text=Workshop+Image';
+                  }}
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/70 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
-                  <p className="text-white p-4 text-sm">
-                    {image.caption}
-                  </p>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-end">
+                  <div className="p-4">
+                    <h4 className="text-white font-semibold mb-1">{image.alt}</h4>
+                    <p className="text-white/90 text-sm">
+                      {image.caption}
+                    </p>
+                  </div>
                 </div>
               </div>
             ))}
