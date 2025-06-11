@@ -12,6 +12,9 @@ import GuestCheckout from './components/GuestCheckout';
 import Footer from './components/Footer';
 import ShoppingCart from './components/ShoppingCart';
 import Blog from './components/Blog';
+import About from './components/About';
+import Products from './components/Products';
+import Contact from './components/Contact';
 
 function App() {
   useEffect(() => {
@@ -28,8 +31,11 @@ function App() {
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/about" element={<About />} />
+            <Route path="/products" element={<Products />} />
             <Route path="/shop" element={<Shop />} />
            <Route path="/blog" element={<Blog />} />
+           <Route path="/contact" element={<Contact />} />
             <Route path="/checkout" element={<GuestCheckout />} />
           </Routes>
           <Footer />

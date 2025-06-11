@@ -36,7 +36,7 @@ const Hero = () => {
             {/* Primary CTA - View Catalog */}
             <button 
               className="group flex items-center justify-center gap-2 bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
-              onClick={() => window.location.href = '#products'}
+              onClick={() => window.location.href = '/products'}
             >
               View Catalog
               <FaBookOpen className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />

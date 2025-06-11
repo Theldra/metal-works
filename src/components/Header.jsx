@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
-import { FaArrowUp, FaBars, FaShoppingCart, FaTimes, FaUser } from 'react-icons/fa';
+import { FaArrowUp, FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import logo from '../assets/images/fab-logo.jpg'; 
 
@@ -28,14 +28,14 @@ const Header = () => {
             
             <nav className="hidden md:flex space-x-8">
               <Link to="/" className="hover:text-blue-300 transition-colors">Home</Link>
-              <a href="#about" className="hover:text-blue-300 transition-colors">About</a>
-              <a href="#products" className="hover:text-blue-300 transition-colors">Products</a>
+              <Link to="/about" className="hover:text-blue-300 transition-colors">About</Link>
+              <Link to="/products" className="hover:text-blue-300 transition-colors">Products</Link>
               <Link to="/shop" className="hover:text-blue-300 transition-colors">Shop</Link>
               <Link to="/blog" className="hover:text-blue-300 transition-colors">Blog</Link>
-              <a href="#contact" className="hover:text-blue-300 transition-colors">Contact</a>
+              <Link to="/contact" className="hover:text-blue-300 transition-colors">Contact</Link>
             </nav>
 
-            <div className="hidden md:flex items-center space-x-4">
+            <div className="hidden md:flex items-center">
               <button 
                 onClick={() => setIsCartOpen(true)}
                 className="relative text-xl cursor-pointer hover:text-blue-300"
@@ -47,9 +47,6 @@ const Header = () => {
                   </span>
                 )}
               </button>
-              <Link to="/auth">
-                <FaUser className="text-xl cursor-pointer hover:text-blue-300" />
-              </Link>
             </div>
 
             <button 
