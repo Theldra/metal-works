@@ -1,1 +1,47 @@
+html, body {
+  overflow-x: hidden;
+  position: relative;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+#root {
+  overflow-x: hidden;
+  width: 100%;
+}
+
 @import "tailwindcss";
+
+/* Image transition styles */
+.transition-opacity {
+  transition: opacity 1s ease-in-out;
+}
+
+.opacity-0 {
+  opacity: 0;
+}
+
+.opacity-100 {
+  opacity: 1;
+}
+
+/* Image fitting styles */
+.object-cover {
+  object-fit: cover;
+  font-family: "object-fit: cover"; /* IE polyfill */
+}
+
+/* Background image animation */
+.opacity-100 img {
+  animation: scale 8s ease-in-out infinite alternate;
+}
+
+@keyframes scale {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.05);
+  }
+}

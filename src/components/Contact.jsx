@@ -1,6 +1,13 @@
-// components/Contact.jsx
 import React, { useState } from 'react';
-import { FaEnvelope, FaMapMarkerAlt, FaPaperPlane, FaPhoneAlt } from 'react-icons/fa';
+import { 
+  FaEnvelope, 
+  FaMapMarkerAlt, 
+  FaPaperPlane, 
+  FaPhoneAlt, 
+  FaWhatsapp, 
+  FaLinkedin,
+  FaInstagram 
+} from 'react-icons/fa';
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -41,16 +48,51 @@ const Contact = () => {
             <h3 className="text-3xl font-bold mb-8">Contact Information</h3>
             
             <div className="space-y-6">
-              <div className="flex items-center">
+              {/* Phone/WhatsApp section */}
+              <div className="flex items-start">
                 <div className="bg-cyan-500 p-4 rounded-full mr-6">
                   <FaPhoneAlt className="text-xl" />
                 </div>
                 <div>
-                  <h4 className="text-xl font-semibold">Phone</h4>
-                  <p className="text-cyan-200">+233 54 105 3744</p>
+                  <h4 className="text-xl font-semibold">Phone/WhatsApp</h4>
+                  <div className="space-y-2">
+                    <a 
+                      href="tel:+233541053744" 
+                      className="text-cyan-200 hover:text-cyan-300 flex items-center"
+                    >
+                      <FaPhoneAlt className="mr-2 text-sm" />
+                      +233 54 105 3744
+                    </a>
+                    <a 
+                      href="https://wa.me/233541053744" 
+                      target="_blank" 
+                      rel="noopener noreferrer"
+                      className="text-cyan-200 hover:text-cyan-300 flex items-center"
+                    >
+                      <FaWhatsapp className="mr-2" />
+                      Chat on WhatsApp
+                    </a>
+                  </div>
                 </div>
               </div>
 
+              {/* Email section */}
+              <div className="flex items-center">
+                <div className="bg-cyan-500 p-4 rounded-full mr-6">
+                  <FaEnvelope className="text-xl" />
+                </div>
+                <div>
+                  <h4 className="text-xl font-semibold">Email</h4>
+                  <a 
+                    href="mailto:fabritech23@gmail.com" 
+                    className="text-cyan-200 hover:text-cyan-300"
+                  >
+                    fabritech23@gmail.com
+                  </a>
+                </div>
+              </div>
+
+              {/* Location section */}
               <div className="flex items-center">
                 <div className="bg-cyan-500 p-4 rounded-full mr-6">
                   <FaMapMarkerAlt className="text-xl" />
@@ -61,24 +103,33 @@ const Contact = () => {
                 </div>
               </div>
 
-              <div className="flex items-center">
-                <div className="bg-cyan-500 p-4 rounded-full mr-6">
-                  <FaEnvelope className="text-xl" />
-                </div>
-                <div>
-                  <h4 className="text-xl font-semibold">Founder</h4>
-                  <p className="text-cyan-200">Rita Ohenewaa Asimpah</p>
-                </div>
+              {/* Social Media Links */}
+              <div className="flex space-x-4">
+                <a 
+                  href="https://www.linkedin.com/in/rita-asimpah-3a6302276"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-cyan-500 p-4 rounded-full hover:bg-cyan-600 transition-colors"
+                >
+                  <FaLinkedin className="text-xl" />
+                </a>
+                <a 
+                  href="https://www.instagram.com/fabritechgh"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="bg-cyan-500 p-4 rounded-full hover:bg-cyan-600 transition-colors"
+                >
+                  <FaInstagram className="text-xl" />
+                </a>
               </div>
             </div>
 
-            {/* Update Business Hours container */}
+            {/* Updated Business Hours container */}
             <div className="mt-12 p-6 bg-[#1e446d] rounded-xl">
               <h4 className="text-xl font-semibold mb-4 text-white">Business Hours</h4>
               <div className="space-y-2 text-white">
                 <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
-                <p>Saturday: 9:00 AM - 4:00 PM</p>
-                <p>Sunday: Closed</p>
+                <p className="text-cyan-200">Weekends: Closed</p>
               </div>
             </div>
           </div>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FaHeart, FaLeaf, FaTools, FaUsers } from 'react-icons/fa';
+import { FaHeart, FaLeaf, FaTools, FaUsers, FaEye, FaFlag, FaStar } from 'react-icons/fa';
 import ceo from '../assets/images/rita.jpeg'; 
 import workshop1 from '../assets/images/atshop.jpg';
 import workshop2 from '../assets/images/melt.jpg';
@@ -144,6 +144,108 @@ const About = () => {
                 </div>
               </div>
             ))}
+          </div>
+        </div>
+
+        <div className="bg-white rounded-2xl p-8 md:p-12 shadow-lg mt-16" data-aos="fade-up">
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Vision Section */}
+            <div className="bg-gradient-to-b from-blue-50 to-white p-6 rounded-xl">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <span className="text-cyan-500 mr-2">
+                  <FaEye className="w-6 h-6" />
+                </span>
+                Vision
+              </h3>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  To provide outstanding works to make a difference in the market environment
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Inculcate diverse cultures into contemporary art to have a blend with science and technology in the Agricultural, creative and industrial sector
+                </li>
+              </ul>
+            </div>
+
+            {/* Goals Section */}
+            <div className="bg-gradient-to-b from-blue-50 to-white p-6 rounded-xl">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <span className="text-cyan-500 mr-2">
+                  <FaFlag className="w-6 h-6" />
+                </span>
+                Goals
+              </h3>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Producing works in their tip-top conditions to satisfy customers
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Produce works by first considering the taste and comfortability of the customer
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Affordability of products to customers
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Optimum service to customers to breed positive feedback
+                </li>
+              </ul>
+            </div>
+
+            {/* Core Values Section */}
+            <div className="bg-gradient-to-b from-blue-50 to-white p-6 rounded-xl">
+              <h3 className="text-2xl font-bold text-gray-800 mb-4 flex items-center">
+                <span className="text-cyan-500 mr-2">
+                  <FaStar className="w-6 h-6" />
+                </span>
+                Core Values
+              </h3>
+              <ul className="space-y-3 text-gray-600">
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Loyalty and Honesty in service
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Building confidence between workers and clients
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Provision of Bona fide accountability
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Respect without discrimination
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Embracing gender equality (SDG No. 5)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Creation of employment (SDG No. 8)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Innovativeness in service (SDG No. 9)
+                </li>
+                <li className="flex items-start">
+                  <span className="text-cyan-500 mr-2">•</span>
+                  Providing quality skill training
+                </li>
+              </ul>
+            </div>
+          </div>
+
+          <div className="text-center mt-8 pt-8 border-t">
+            <p className="text-xl text-gray-800">
+              Our Slogan: <em className="text-cyan-500 font-medium">"creativity in your style"</em>
+            </p>
           </div>
         </div>
       </div>

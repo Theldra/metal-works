@@ -35,7 +35,7 @@ const Products = () => {
       title: "Modern Furniture",
       description: "Contemporary metal furniture designs for home and office",
       status: "Available",
-      image: furnImg
+      image: benchImg
     },
     {
       icon: <FaTractor className="w-6 h-6" />,
@@ -70,7 +70,7 @@ const Products = () => {
     title: "Outdoor Furniture",
     description: "Handcrafted metal-wood fusion bench for elegant outdoor relaxation",
     status: "Available",
-    image: benchImg
+    image: furnImg
   },
   {
     icon: <FaPalette className="w-6 h-6" />,

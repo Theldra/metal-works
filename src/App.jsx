@@ -27,15 +27,15 @@ function App() {
   return (
     <CartProvider>
       <BrowserRouter>
-        <div className="App">
+        <div className="App relative overflow-x-hidden w-full">
           <Header />
           <Routes>
             <Route path="/" element={<Home />} />
+            <Route path="/shop" element={<Shop />} />
+            <Route path="/blog" element={<Blog />} />
             <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
-            <Route path="/shop" element={<Shop />} />
-           <Route path="/blog" element={<Blog />} />
-           <Route path="/contact" element={<Contact />} />
+            <Route path="/contact" element={<Contact />} />
             <Route path="/checkout" element={<GuestCheckout />} />
           </Routes>
           <Footer />

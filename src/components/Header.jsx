@@ -1,5 +1,5 @@
 import React, { useContext, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { CartContext } from '../context/CartContext';
 import { FaArrowUp, FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
 import { useScrollToTop } from '../hooks/useScrollToTop';
@@ -9,6 +9,18 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { getCartItemsCount, setIsCartOpen } = useContext(CartContext);
   const scrollToTop = useScrollToTop();
+  const location = useLocation();
+
+  const handleNavClick = (sectionId) => {
+    setIsOpen(false); // Close mobile menu if open
+    if (location.pathname === '/') {
+      // Only scroll if we're on the home page
+      const element = document.getElementById(sectionId);
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    }
+  };
 
   return (
     <>
@@ -27,12 +39,36 @@ const Header = () => {
             </Link>
             
             <nav className="hidden md:flex space-x-8">
-              <Link to="/" className="hover:text-blue-300 transition-colors">Home</Link>
-              <Link to="/about" className="hover:text-blue-300 transition-colors">About</Link>
-              <Link to="/products" className="hover:text-blue-300 transition-colors">Products</Link>
-              <Link to="/shop" className="hover:text-blue-300 transition-colors">Shop</Link>
-              <Link to="/blog" className="hover:text-blue-300 transition-colors">Blog</Link>
-              <Link to="/contact" className="hover:text-blue-300 transition-colors">Contact</Link>
+              <Link to="/" className="hover:text-blue-300 transition-colors">
+                Home
+              </Link>
+              <Link 
+                to="/"
+                onClick={() => handleNavClick('about')}
+                className="hover:text-blue-300 transition-colors"
+              >
+                About
+              </Link>
+              <Link 
+                to="/"
+                onClick={() => handleNavClick('products')}
+                className="hover:text-blue-300 transition-colors"
+              >
+                Products
+              </Link>
+              <Link to="/shop" className="hover:text-blue-300 transition-colors">
+                Shop
+              </Link>
+              <Link to="/blog" className="hover:text-blue-300 transition-colors">
+                Blog
+              </Link>
+              <Link 
+                to="/"
+                onClick={() => handleNavClick('contact')}
+                className="hover:text-blue-300 transition-colors"
+              >
+                Contact
+              </Link>
             </nav>
 
             <div className="hidden md:flex items-center">
@@ -57,13 +93,51 @@ const Header = () => {
             </button>
           </div>
 
+          {/* Update mobile menu */}
           {isOpen && (
             <nav className="md:hidden mt-4 space-y-2">
-              <Link to="/" className="block py-2 hover:text-blue-300">Home</Link>
-              <a href="#about" className="block py-2 hover:text-blue-300">About</a>
-              <a href="#products" className="block py-2 hover:text-blue-300">Products</a>
-              <Link to="/shop" className="block py-2 hover:text-blue-300">Shop</Link>
-              <a href="#contact" className="block py-2 hover:text-blue-300">Contact</a>
+              <Link 
+                to="/" 
+                onClick={() => setIsOpen(false)}
+                className="block py-2 hover:text-blue-300"
+              >
+                Home
+              </Link>
+              <Link 
+                to="/"
+                onClick={() => handleNavClick('about')}
+                className="block py-2 hover:text-blue-300"
+              >
+                About
+              </Link>
+              <Link 
+                to="/"
+                onClick={() => handleNavClick('products')}
+                className="block py-2 hover:text-blue-300"
+              >
+                Products
+              </Link>
+              <Link 
+                to="/shop" 
+                onClick={() => setIsOpen(false)}
+                className="block py-2 hover:text-blue-300"
+              >
+                Shop
+              </Link>
+              <Link 
+                to="/blog" 
+                onClick={() => setIsOpen(false)}
+                className="block py-2 hover:text-blue-300"
+              >
+                Blog
+              </Link>
+              <Link 
+                to="/"
+                onClick={() => handleNavClick('contact')}
+                className="block py-2 hover:text-blue-300"
+              >
+                Contact
+              </Link>
               <button 
                 onClick={() => setIsCartOpen(true)}
                 className="block py-2 hover:text-blue-300 text-left"
