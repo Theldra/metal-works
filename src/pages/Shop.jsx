@@ -3,97 +3,103 @@ import { CartContext } from '../context/CartContext';
 import { FaEye, FaFilter, FaSearch, FaShoppingCart } from 'react-icons/fa';
 import ProductModal from '../components/ProductModal';
 
-import quaBikeImg from "../assets/images/quadb.jpg";
+import quabImg from "../assets/images/quadb.jpg";
+import gateImg from "../assets/images/cgate.jpg";
+import balusImg from "../assets/images/balust.jpg";
+import outdoorFurnImg from "../assets/images/furn.jpg";
+import deskFurnImg from "../assets/images/desk.jpg";
+import officeFurnImg from "../assets/images/chcab.jpg";
 
 
 const Shop = () => {
   const productsList = [
     {
       id: 1,
-      name: "Manual Maize Planter",
-      price: 850,
-      category: "Agriculture",
-      image: "/api/placeholder/300/250",
-      description: "Efficient manual maize planting machine for smallholder farmers",
-      features: ["Precise seed placement", "Adjustable depth", "Durable construction"],
-      inStock: true,
-      rating: 4.8
-    },
-    {
-      id: 2,
       name: "Cargo Quad-cycle",
       price: 2500,
       category: "Agriculture",
-      image: quaBikeImg,
+      image: quabImg, 
       description: "Multipurpose cargo farm bike for transportation and farming",
       features: ["High load capacity", "All-terrain wheels", "Weather resistant"],
       inStock: false,
       rating: 4.9
     },
     {
-      id: 3,
+      id: 2,
       name: "Custom Iron Gate",
       price: 1200,
       category: "Construction",
-      image: "/api/placeholder/300/250",
+      image: gateImg,
       description: "Security gates with decorative designs",
       features: ["Custom designs", "Galvanized steel", "Powder coating"],
       inStock: true,
       rating: 4.7
     },
     {
-      id: 4,
+      id: 3,
       name: "Steel Balustrade",
       price: 150,
       category: "Construction",
-      image: "/api/placeholder/300/250",
+      image: balusImg,
       description: "Decorative balustrades for stairs and balconies",
       features: ["Modern designs", "Corrosion resistant", "Easy installation"],
       inStock: true,
       rating: 4.6
     },
     {
-      id: 5,
-      name: "Farm Tool Rack",
-      price: 75,
-      category: "Agriculture",
-      image: "/api/placeholder/300/250",
-      description: "Organized storage for farming tools",
-      features: ["Space efficient", "Easy access", "Rust proof"],
+      id: 4,
+      name: "Outdoor Metal Furniture",
+      price: 850,
+      category: "Furniture",
+      image: outdoorFurnImg,
+      description: "Modern outdoor furniture set with metal frame and weather-resistant finish",
+      features: ["Weather resistant", "Contemporary design", "Durable metal construction"],
       inStock: true,
-      rating: 4.5
+      rating: 4.8
+    },
+    {
+      id: 5,
+      name: "Metal-Wood Desk",
+      price: 650,
+      category: "Furniture",
+      image: deskFurnImg,
+      description: "Industrial style desk with metal frame and solid wood top",
+      features: ["Metal-wood integration", "Spacious workspace", "Industrial design"],
+      inStock: true,
+      rating: 4.7
     },
     {
       id: 6,
-      name: "Industrial Conveyor",
-      price: 5000,
-      category: "Industrial",
-      image: "/api/placeholder/300/250",
-      description: "Custom conveyor systems for industrial use",
-      features: ["Variable speed", "Heavy duty", "Modular design"],
+      name: "Office Storage Unit",
+      price: 1100,
+      category: "Furniture",
+      image: officeFurnImg,
+      description: "Office furniture with integrated drawers and metal-wood construction",
+      features: ["Built-in storage", "Professional finish", "Modern design"],
       inStock: true,
-      rating: 4.9
+      rating: 4.8
     }
   ];
 
+  // Update the generateProducts function to use only available images
   const generateProducts = () => {
-    const categories = ["Agriculture", "Construction", "Industrial"];
-    const products = [];
-    
     const templates = {
       Agriculture: [
-        { name: "Manual Maize Planter", price: 850 },
-        { name: "Cargo Quad-cycle", price: 2500 },
-        { name: "Farm Tool Rack", price: 75 }
+        { name: "Cargo Quad-cycle", price: 2500, image: quabImg }
       ],
       Construction: [
-        { name: "Custom Iron Gate", price: 1200 },
-        { name: "Steel Balustrade", price: 150 }
+        { name: "Custom Iron Gate", price: 1200, image: gateImg },
+        { name: "Steel Balustrade", price: 150, image: balusImg }
       ],
-      Industrial: [
-        { name: "Industrial Conveyor", price: 5000 }
+      Furniture: [
+        { name: "Outdoor Metal Furniture", price: 850, image: outdoorFurnImg },
+        { name: "Metal-Wood Desk", price: 650, image: deskFurnImg },
+        { name: "Office Storage Unit", price: 1100, image: officeFurnImg }
       ]
     };
+
+    const categories = ["Agriculture", "Construction", "Furniture"];
+    const products = [];
 
     let id = 1;
     categories.forEach(category => {
@@ -103,10 +109,10 @@ const Shop = () => {
           name: item.name,
           price: item.price,
           category,
-          image: `/api/placeholder/300/250`,
+          image: item.image,
           description: `High-quality ${item.name.toLowerCase()} for professional use`,
           features: ["Premium materials", "Expert craftsmanship", "Durable design"],
-          inStock: Math.random() > 0.2, // 80% chance of being in stock
+          inStock: Math.random() > 0.2,
           rating: (4 + Math.random()).toFixed(1)
         });
       });
@@ -156,11 +162,15 @@ const Shop = () => {
       data-aos="fade-up"
       data-aos-delay={index * 100}
     >
-      <div className="relative">
+      <div className="relative h-64"> {/* Increased height from h-48 to h-64 */}
         <img
           src={product.image}
           alt={product.name}
-          className="w-full h-48 object-cover"
+          className="w-full h-full object-contain p-4 bg-gray-50" // Changed from object-cover to object-contain and added padding
+          onError={(e) => {
+            e.target.onerror = null;
+            e.target.src = 'https://via.placeholder.com/300x250?text=Image+Not+Found';
+          }}
         />
         {!product.inStock && (
           <div className="absolute inset-0 bg-black bg-opacity-50 flex items-center justify-center">

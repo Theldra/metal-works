@@ -1,4 +1,3 @@
-// components/ProductModal.jsx
 import React, { useContext, useState } from 'react';
 import { CartContext } from '../context/CartContext';
 import { FaCheck, FaShoppingCart, FaStar, FaTimes } from 'react-icons/fa';

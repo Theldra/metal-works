@@ -1,10 +1,11 @@
 import React from 'react';
 import { FaHeart, FaLeaf, FaTools, FaUsers, FaEye, FaFlag, FaStar } from 'react-icons/fa';
-import ceo from '../assets/images/rita.jpeg'; 
+import ceo from '../assets/images/ritt.jpg'; 
 import workshop1 from '../assets/images/atshop.jpg';
 import workshop2 from '../assets/images/melt.jpg';
 import workshop3 from '../assets/images/btyre.jpg';
 import workshop4 from '../assets/images/bproc.jpg';
+import motivationalImg from '../assets/images/motivate.jpeg';
 
 const About = () => {
   const features = [
@@ -109,6 +110,24 @@ const About = () => {
               </div>
               <p className="text-lg font-semibold">Rita Ohenewaa Asimpah</p>
               <p className="opacity-80">Founder & CEO</p>
+            </div>
+          </div>
+        </div>
+
+        <div className="my-16" data-aos="fade-up">
+          <div className="rounded-2xl overflow-hidden shadow-lg">
+            <img
+              src={motivationalImg}
+              alt="Rita Ohenewaa Asimpah - Motivational"
+              className="w-full object-contain max-h-[800px]"
+            />
+            <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8">
+              <blockquote className="text-2xl md:text-3xl font-medium italic mb-4 text-white">
+                "Empowering women in metal fabrication, one innovation at a time"
+              </blockquote>
+              <p className="text-cyan-300 font-semibold">
+                - Rita Ohenewaa Asimpah
+              </p>
             </div>
           </div>
         </div>
@@ -244,7 +263,7 @@ const About = () => {
 
           <div className="text-center mt-8 pt-8 border-t">
             <p className="text-xl text-gray-800">
-              Our Slogan: <em className="text-cyan-500 font-medium">"creativity in your style"</em>
+              Our Slogan: <em className="text-cyan-500 font-medium">"Creativity in your style"</em>
             </p>
           </div>
         </div>

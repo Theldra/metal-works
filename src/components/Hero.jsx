@@ -1,26 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FaAd, FaBookOpen, FaDoorOpen, FaIndustry, FaShoppingCart, FaTractor } from 'react-icons/fa';
 import weldingImage from '../assets/images/welding.jpg';
-import weldiImg from "../assets/images/rweld.jpeg";
-import weldImg from "../assets/images/weld.jpeg";
 
 const Hero = () => {
-  const [currentImage, setCurrentImage] = useState(0);
-  
-  const backgroundImages = [
-    weldingImage,
-    weldiImg,
-    weldImg
-  ];
-
-  useEffect(() => {
-    const timer = setInterval(() => {
-      setCurrentImage((prev) => (prev + 1) % backgroundImages.length);
-    }, 5000); // Change image every 5 seconds
-
-    return () => clearInterval(timer);
-  }, []);
-
   const services = [
     { icon: <FaDoorOpen />, text: 'Security Doors & Gates' },
     { icon: <FaIndustry />, text: 'Balustrades & Railings' },
@@ -30,40 +12,18 @@ const Hero = () => {
 
   return (
     <section className="relative min-h-screen bg-[#29629b] text-white overflow-hidden">
-      {/* Background Images */}
-      {backgroundImages.map((image, index) => (
-        <div
-          key={index}
-          className={`absolute inset-0 transition-opacity duration-1000 ${
-            currentImage === index ? 'opacity-100' : 'opacity-0'
-          }`}
-        >
-          <img
-            src={image}
-            alt={`Metal welding background ${index + 1}`}
-            className="w-full h-full object-cover"
-          />
-          <div className="absolute inset-0 bg-black/50"></div>
-        </div>
-      ))}
-
-      {/* Optional: Image Navigation Dots */}
-      <div className="absolute bottom-4 left-1/2 transform -translate-x-1/2 flex space-x-2 z-10">
-        {backgroundImages.map((_, index) => (
-          <button
-            key={index}
-            onClick={() => setCurrentImage(index)}
-            className={`w-2 h-2 rounded-full transition-all ${
-              currentImage === index ? 'bg-cyan-300 w-4' : 'bg-white/50'
-            }`}
-            aria-label={`Go to slide ${index + 1}`}
-          />
-        ))}
+      <div className="absolute inset-0">
+        <img
+          src={weldingImage}
+          alt="Metal welding background"
+          className="w-full h-full object-cover"
+        />
+        <div className="absolute inset-0 bg-black/60"></div> {/* Increased overlay opacity for better text readability */}
       </div>
 
       {/* Content */}
       <div className="relative container mx-auto px-4 py-20 flex flex-col justify-center min-h-screen">
-        <div className="max-w-3xl backdrop-blur-sm bg-black/30 p-8 rounded-lg" data-aos="fade-up">
+        <div className="max-w-3xl p-8" data-aos="fade-up"> {/* Removed backdrop-blur-sm and bg-black/30 */}
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
             Excellence in <span className="text-cyan-300">Metal Fabrication</span>
           </h1>
