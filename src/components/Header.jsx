@@ -1,13 +1,13 @@
 import React, { useContext, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { CartContext } from '../context/CartContext';
+// import { CartContext } from '../context/CartContext';
 import { FaArrowUp, FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import logo from '../assets/images/fab-logo.jpg'; 
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { getCartItemsCount, setIsCartOpen } = useContext(CartContext);
+  // const { getCartItemsCount, setIsCartOpen } = useContext(CartContext);
   const scrollToTop = useScrollToTop();
   const location = useLocation();
 
@@ -56,9 +56,9 @@ const Header = () => {
               >
                 Products
               </Link>
-              <Link to="/shop" className="hover:text-blue-300 transition-colors">
+              {/* <Link to="/shop" className="hover:text-blue-300 transition-colors">
                 Shop
-              </Link>
+              </Link> */}
               <Link to="/blog" className="hover:text-blue-300 transition-colors">
                 Blog
               </Link>
@@ -71,7 +71,7 @@ const Header = () => {
               </Link>
             </nav>
 
-            <div className="hidden md:flex items-center">
+            {/* <div className="hidden md:flex items-center">
               <button 
                 onClick={() => setIsCartOpen(true)}
                 className="relative text-xl cursor-pointer hover:text-blue-300"
@@ -83,7 +83,7 @@ const Header = () => {
                   </span>
                 )}
               </button>
-            </div>
+            </div> */}
 
             <button 
               className="md:hidden"
@@ -117,13 +117,13 @@ const Header = () => {
               >
                 Products
               </Link>
-              <Link 
+              {/* <Link 
                 to="/shop" 
                 onClick={() => setIsOpen(false)}
                 className="block py-2 hover:text-blue-300"
               >
                 Shop
-              </Link>
+              </Link> */}
               <Link 
                 to="/blog" 
                 onClick={() => setIsOpen(false)}
@@ -138,12 +138,12 @@ const Header = () => {
               >
                 Contact
               </Link>
-              <button 
+              {/* <button 
                 onClick={() => setIsCartOpen(true)}
                 className="block py-2 hover:text-blue-300 text-left"
               >
                 Cart ({getCartItemsCount()})
-              </button>
+              </button> */}
             </nav>
           )}
         </div>

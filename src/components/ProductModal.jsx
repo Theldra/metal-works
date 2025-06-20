@@ -1,17 +1,17 @@
 import React, { useContext, useState } from 'react';
-import { CartContext } from '../context/CartContext';
+// import { CartContext } from '../context/CartContext';
 import { FaCheck, FaShoppingCart, FaStar, FaTimes } from 'react-icons/fa';
 
 const ProductModal = ({ product, isOpen, onClose }) => {
-  const [quantity, setQuantity] = useState(1);
-  const { addToCart } = useContext(CartContext);
+  // const [quantity, setQuantity] = useState(1);
+  // const { addToCart } = useContext(CartContext);
 
-  if (!isOpen) return null;
+  // if (!isOpen) return null;
 
-  const handleAddToCart = () => {
-    addToCart({ ...product, quantity });
-    onClose();
-  };
+  // const handleAddToCart = () => {
+  //   addToCart({ ...product, quantity });
+  //   onClose();
+  // };
 
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
@@ -68,7 +68,7 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                 </ul>
               </div>
 
-              <div className="mb-6">
+              {/* <div className="mb-6">
                 <span className="text-3xl font-bold text-blue-600">
                   GH₵{product.price.toLocaleString()}
                 </span>
@@ -106,7 +106,7 @@ const ProductModal = ({ product, isOpen, onClose }) => {
                   <p className="text-gray-600 font-medium">Currently in market testing phase</p>
                   <p className="text-sm text-gray-500">Contact us for availability updates</p>
                 </div>
-              )}
+              )} */}
             </div>
           </div>
         </div>

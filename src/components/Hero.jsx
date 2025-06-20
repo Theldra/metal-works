@@ -42,14 +42,14 @@ const Hero = () => {
               <FaBookOpen className="w-5 h-5 transition-transform duration-300 group-hover:translate-x-1" />
             </button>
             
-            {/* Secondary CTA - Store */}
+            {/* Secondary CTA - Store
             <button 
               className="group flex items-center justify-center gap-2 bg-transparent border-2 border-white hover:bg-white/10 text-white px-8 py-3 rounded-lg font-semibold transition-all duration-300"
               onClick={() => window.location.href = '/shop'}
             >
               Visit Store
               <FaShoppingCart className="w-5 h-5" />
-            </button>
+            </button> */}
           </div>
         </div>
 
