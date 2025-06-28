@@ -15,7 +15,6 @@ import Blog from './components/Blog';
 import About from './components/About';
 import Products from './components/Products';
 import Contact from './components/Contact';
-import OrderForm from './pages/OrderForm';
 
 function App() {
   useEffect(() => {
@@ -37,7 +36,6 @@ function App() {
             <Route path="/about" element={<About />} />
             <Route path="/products" element={<Products />} />
             <Route path="/contact" element={<Contact />} />
-            <Route path="order" element={<OrderForm />} />
             {/* <Route path="/checkout" element={<GuestCheckout />} /> */}
           </Routes>
           <Footer />

@@ -149,12 +149,36 @@ const Products = () => {
         </div>
 
         <div className="text-center mt-12" data-aos="fade-up">
-          <button 
-            onClick={() => window.location.href = '/catalog'}
-            className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold transition-all"
-          >
-            View Full Catalog
-          </button>
+          {/* Custom Order CTA with Call & WhatsApp options */}
+          <div className="inline-flex flex-col items-center gap-4">
+            <button
+              onClick={() => {
+                document.getElementById('order-contact-options').classList.toggle('hidden');
+              }}
+              className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold transition-all"
+            >
+              Request a Custom Order
+            </button>
+            <div
+              id="order-contact-options"
+              className="hidden mt-2 space-x-4"
+            >
+              <a
+                href="tel:+233541053744"
+                className="inline-block bg-green-600 hover:bg-green-700 text-white px-5 py-2 rounded-lg font-semibold transition-all"
+              >
+                Call 
+              </a>
+              <a
+                href="https://wa.me/233541053744?text=Hello%2C%20I%20would%20like%20to%20request%20a%20custom%20metal%20fabrication%20order."
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block bg-green-500 hover:bg-green-600 text-white px-5 py-2 rounded-lg font-semibold transition-all"
+              >
+                WhatsApp 
+              </a>
+            </div>
+          </div>
         </div>
       </div>
     </section>
