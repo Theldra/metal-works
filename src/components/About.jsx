@@ -62,8 +62,8 @@ const About = () => {
             About 
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Founded by Rita Ohenewaa Asimpah in Ayigya, Kumasi, we're dedicated to transforming 
-            Ghana's agricultural landscape through innovative metal fabrication solutions.
+            Founded by Rita Ohenewaa Asimpah in Parkoso Opp. Parkoso Comm. SHS,Kumasi, we're dedicated to transforming 
+            industries through innovative metal fabrication solutions.
           </p>
         </div>
 
@@ -89,15 +89,10 @@ const About = () => {
             <div>
               <h3 className="text-3xl font-bold mb-6">Our Innovation Story</h3>
               <p className="text-lg opacity-90 mb-6">
-                Recognizing the mechanization challenges in Ghana's agricultural sector, our founder 
-                Rita embarked on a journey through apprenticeship and skills
-                passion for creating solutions and solving real-world problems, Fabri-Tech Impressions 
-                was born to bridge the gap in agricultural technology.
+                Recognizing the need for innovative solutions in Ghana's metal fabrication industry, our founder Rita embarked on a journey through apprenticeship and skill development. Driven by a passion for solving real-world challenges, Fabri-Tech Impressions was born to bridge gaps across various sectors through advanced metal works.
               </p>
               <p className="text-lg opacity-90">
-                Today, we specialize in creating multipurpose cargo farm bikes, maize planting machines, 
-                and various metal fabrication works that directly impact the efficiency and productivity 
-                of smallholder farmers.
+                Today, we specialize in creating custom machinery, structural components, and diverse metal fabrication projects that enhance efficiency and productivity for clients in multiple industries.
               </p>
             </div>
             <div className="text-center">

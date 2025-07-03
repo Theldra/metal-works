@@ -99,7 +99,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold">Location</h4>
-                  <p className="text-cyan-200">Ayigya, Kumasi, Ghana</p>
+                  <p className="text-cyan-200">Parkoso Opp. Parkoso Comm. SHS, Kumasi</p>
                 </div>
               </div>
 
@@ -128,7 +128,7 @@ const Contact = () => {
             <div className="mt-12 p-6 bg-[#1e446d] rounded-xl">
               <h4 className="text-xl font-semibold mb-4 text-white">Business Hours</h4>
               <div className="space-y-2 text-white">
-                <p>Monday - Friday: 8:00 AM - 6:00 PM</p>
+                <p>Monday - Friday: 8:30 AM - 5:30 PM</p>
                 <p className="text-cyan-200">Weekends: Closed</p>
               </div>
             </div>

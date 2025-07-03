@@ -142,7 +142,7 @@ const Blog = () => {
       <div className="container mx-auto px-4">
         {/* Header */}
         <div className="text-center mb-16" data-aos="fade-up">
-          <h2 className="text-4xl md:text-5xl font-bold text-gray-800 mb-6">
+          <h2 className="text-4xl md:text-4xl font-bold mb-6">
             Our <span className="text-cyan-300">Blog</span>
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">

@@ -9,8 +9,8 @@ const Footer = () => {
           <div>
             <h3 className="text-2xl font-bold mb-4">Fabri-Tech Impressions</h3>
             <p className="text-gray-100 mb-4">
-              Revolutionizing agriculture through innovative metal fabrication solutions 
-              for smallholder farmers across Ghana.
+              Transforming industries through innovative metal fabrication solutions 
+              across Ghana.
             </p>
             <div className="flex space-x-4">
               <a 
@@ -48,8 +48,10 @@ const Footer = () => {
             <ul className="space-y-2 text-gray-100">
               <li>Agricultural Machinery</li>
               <li>Metal Fabrication</li>
+              <li>CNC Cutting</li>
               <li>Custom Designs</li>
               <li>Training Programs</li>
+
             </ul>
           </div>
 
@@ -67,7 +69,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <FaMapMarkerAlt className="mr-2" />
-                <span>Ayigya, Kumasi, Ghana</span>
+                <span>Parkoso Opp. Parkoso Comm. SHS,Kumasi</span>
               </div>
             </div>
           </div>
