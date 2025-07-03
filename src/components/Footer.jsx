@@ -69,7 +69,7 @@ const Footer = () => {
               </div>
               <div className="flex items-center">
                 <FaMapMarkerAlt className="mr-2" />
-                <span>Parkoso Opp. Parkoso Comm. SHS,Kumasi</span>
+                <span>Parkoso Opp. Parkoso SHS,Kumasi</span>
               </div>
             </div>
           </div>

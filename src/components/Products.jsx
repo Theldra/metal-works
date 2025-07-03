@@ -131,13 +131,7 @@ const Products = () => {
                   </div>
                   <div>
                     <h3 className="text-xl font-bold text-gray-800">{product.title}</h3>
-                    <span className={`inline-block px-3 py-1 rounded-full text-sm font-semibold ${
-                      product.status === 'Available' 
-                        ? 'bg-green-100 text-green-800' 
-                        : 'bg-amber-100 text-amber-800'
-                    }`}>
-                      {product.status}
-                    </span>
+                    {/* Removed product status */}
                   </div>
                 </div>
                 <p className="text-gray-600">
@@ -157,7 +151,7 @@ const Products = () => {
               }}
               className="bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold transition-all"
             >
-              Request a Custom Order
+              Request an Order
             </button>
             <div
               id="order-contact-options"

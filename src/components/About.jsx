@@ -62,8 +62,17 @@ const About = () => {
             About 
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Founded by Rita Ohenewaa Asimpah in Parkoso Opp. Parkoso Comm. SHS,Kumasi, we're dedicated to transforming 
-            industries through innovative metal fabrication solutions.
+            At Fabri-Tech Impressions, we blend creativity, precision,
+            and technology to deliver exceptional metal fabrication services
+            tailored to your unique needs. Our team is passionate about turning
+            your ideas into reality—whether it’s a one-of-a-kind custom project
+            or large-scale industrial solutions. We pride ourselves on our 
+            attention to detail, commitment to quality, and dedication to 
+            customer satisfaction. By embracing innovation and continuous 
+            improvement, we ensure that every product we create not only 
+            meets but exceeds expectations. Partner with us and experience 
+            the difference that expert craftsmanship and a customer-focused 
+            approach can make for your next project.
           </p>
         </div>
 
@@ -110,19 +119,25 @@ const About = () => {
         </div>
 
         <div className="my-16" data-aos="fade-up">
-          <div className="rounded-2xl overflow-hidden shadow-lg">
-            <img
-              src={motivationalImg}
-              alt="Rita Ohenewaa Asimpah - Motivational"
-              className="w-full object-contain max-h-[800px]"
-            />
-            <div className="bg-gradient-to-t from-black/80 via-black/40 to-transparent p-8">
-              <blockquote className="text-2xl md:text-3xl font-medium italic mb-4 text-white">
-                "Empowering women in metal fabrication, one innovation at a time"
-              </blockquote>
-              <p className="text-cyan-300 font-semibold">
-                - Rita Ohenewaa Asimpah
-              </p>
+          <div className="rounded-2xl overflow-hidden shadow-lg bg-gradient-to-t from-black/80 via-black/40 to-transparent p-0 md:p-0">
+            <div className="flex flex-col md:flex-row items-center md:items-stretch">
+              {/* Image on the left, reduced size */}
+              <div className="flex-shrink-0 w-full md:w-1/3 flex justify-center items-center bg-black/60">
+                <img
+                  src={motivationalImg}
+                  alt="Rita Ohenewaa Asimpah - Motivational"
+                  className="object-cover rounded-l-2xl w-full h-64 md:h-full max-h-80"
+                />
+              </div>
+              {/* Text on the right */}
+              <div className="flex-1 flex flex-col justify-center p-8">
+                <blockquote className="text-2xl md:text-3xl font-medium italic mb-4 text-white">
+                  "Empowering women in metal fabrication, one innovation at a time"
+                </blockquote>
+                <p className="text-cyan-300 font-semibold">
+                  - Rita Ohenewaa Asimpah
+                </p>
+              </div>
             </div>
           </div>
         </div>
@@ -158,6 +173,16 @@ const About = () => {
                 </div>
               </div>
             ))}
+          </div>
+
+          {/* View Gallery Button */}
+          <div className="text-center mt-10">
+            <a
+              href="/gallery"
+              className="inline-block bg-cyan-500 hover:bg-cyan-600 text-white px-8 py-3 rounded-lg font-semibold shadow transition-all"
+            >
+              View Gallery
+            </a>
           </div>
         </div>
 
@@ -256,7 +281,7 @@ const About = () => {
             </div>
           </div>
 
-          <div className="text-center mt-8 pt-8 border-t">
+          <div className="text-center mt-8 pt-8 border-t border-gray-200">
             <p className="text-xl text-gray-800">
               Our Slogan: <em className="text-cyan-500 font-medium">"Creativity in your style"</em>
             </p>

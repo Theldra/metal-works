@@ -26,8 +26,11 @@ const Contact = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    console.log('Form submitted:', formData);
-    // Handle form submission logic here
+    const subject = encodeURIComponent("New Contact Message from Website");
+    const body = encodeURIComponent(
+      `Name: ${formData.name}\nEmail: ${formData.email}\nPhone: ${formData.phone}\n\nMessage:\n${formData.message}`
+    );
+    window.location.href = `mailto:fabritech23@gmail.com?subject=${subject}&body=${body}`;
   };
 
   return (
@@ -99,7 +102,7 @@ const Contact = () => {
                 </div>
                 <div>
                   <h4 className="text-xl font-semibold">Location</h4>
-                  <p className="text-cyan-200">Parkoso Opp. Parkoso Comm. SHS, Kumasi</p>
+                  <p className="text-cyan-200">Parkoso Opp. Parkoso SHS, Kumasi</p>
                 </div>
               </div>
 
@@ -125,20 +128,19 @@ const Contact = () => {
             </div>
 
             {/* Updated Business Hours container */}
-            <div className="mt-12 p-6 bg-[#1e446d] rounded-xl">
-              <h4 className="text-xl font-semibold mb-4 text-white">Business Hours</h4>
-              <div className="space-y-2 text-white">
-                <p>Monday - Friday: 8:30 AM - 5:30 PM</p>
+            <div className="p-4 bg-[#1e446d] rounded-xl w-full max-w-xs ml-0 mt-8">
+              <h4 className="text-lg font-semibold mb-2 text-white">Business Hours</h4>
+              <div className="space-y-1 text-white text-base">
+                <p>Mon - Fri: 8:30 AM - 5:30 PM</p>
                 <p className="text-cyan-200">Weekends: Closed</p>
               </div>
             </div>
           </div>
 
-          <div data-aos="fade-left">
+          <div data-aos="fade-left" className="flex items-center">
             {/* Update Form container and inputs */}
-            <form onSubmit={handleSubmit} className="bg-[#1e446d] p-8 rounded-xl">
+            <form onSubmit={handleSubmit} className="bg-[#1e446d] p-8 rounded-xl w-full">
               <h3 className="text-2xl font-bold mb-6 text-white">Send us a Message</h3>
-              
               <div className="grid md:grid-cols-2 gap-4 mb-4">
                 <input
                   type="text"
@@ -159,7 +161,6 @@ const Contact = () => {
                   required
                 />
               </div>
-
               <input
                 type="tel"
                 name="phone"
@@ -168,7 +169,6 @@ const Contact = () => {
                 onChange={handleChange}
                 className="w-full p-4 rounded-lg bg-[#29629b] placeholder-white/80 text-white border border-transparent focus:border-cyan-300 focus:outline-none mb-4"
               />
-
               <textarea
                 name="message"
                 placeholder="Your Message"
@@ -178,7 +178,6 @@ const Contact = () => {
                 className="w-full p-4 rounded-lg bg-[#29629b] placeholder-white/80 text-white border border-transparent focus:border-cyan-300 focus:outline-none mb-6"
                 required
               ></textarea>
-
               <button
                 type="submit"
                 className="w-full bg-cyan-500 hover:bg-cyan-600 text-white py-4 rounded-lg font-semibold flex items-center justify-center transition-all transform hover:scale-105"
