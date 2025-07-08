@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import 'aos/dist/aos.css';
 import Aos from 'aos';
 
@@ -11,6 +11,14 @@ import quadBikeImg from "../assets/images/quadb.jpg";
 import benchImg from "../assets/images/chcab.jpg";
 import drummerImg from "../assets/images/art.jpg"; 
 import studyImg from "../assets/images/desk.jpg";
+import bvquadImg from "../assets/images/backv.jpeg";
+import sbenchImg from "../assets/images/benchside.jpeg";
+import burgImg from "../assets/images/burglar.jpeg";
+import ftquadImg from "../assets/images/fquad.jpeg";
+import fmaizeImg from "../assets/images/frontm.jpeg";
+import maizepImg from "../assets/images/maizepl.jpeg";
+import smaizeImg from "../assets/images/mside.jpeg";
+import sproofImg from "../assets/images/proofside.jpeg";
 import { FaCouch, FaDesktop, FaHammer, FaHome, FaPaintBrush, FaPalette, FaTractor, FaTrophy } from 'react-icons/fa';
 
 const Products = () => {
@@ -22,69 +30,84 @@ const Products = () => {
     });
   }, []);
 
+  // Track current image index for each product
+  const [currentIndexes, setCurrentIndexes] = useState([]);
+
+  // Modal state for large image view
+  const [modalOpen, setModalOpen] = useState(false);
+  const [modalImg, setModalImg] = useState('');
+
+  // Initialize currentIndexes when products change
+  useEffect(() => {
+    setCurrentIndexes(products.map(() => 0));
+  }, []);
+
   const products = [
     {
       icon: <FaTrophy className="w-6 h-6" />,
       title: "Metal Sculptures",
       description: "Unique artistic metal sculptures and decorative pieces",
-      status: "Custom Order",
       image: guitarImg
     },
     {
-      icon: <FaHome className="w-6 h-6" />,
-      title: "Modern Furniture",
-      description: "Contemporary metal furniture designs for home and office",
-      status: "Available",
-      image: benchImg
+      icon: <FaCouch className="w-6 h-6" />,
+      title: "Outdoor Furniture",
+      description: "Handcrafted metal-wood fusion bench for elegant outdoor relaxation ",
+      images: [furnImg, sbenchImg]
     },
     {
       icon: <FaTractor className="w-6 h-6" />,
       title: "Agricultural Equipment",
       description: "BENTUMA - Innovative quad-cargo cycle for efficient farm produce harvesting and transportation",
-      status: "Made to Order",
-      image: quadBikeImg
+      images: [quadBikeImg, ftquadImg, bvquadImg]
     },
     {
       icon: <FaPalette className="w-6 h-6" />,
       title: "Wall Art",
       description: "Metal wall decorations and artistic installations",
-      status: "Available",
       image: sculpImg
     },
     {
       icon: <FaHammer className="w-6 h-6" />,
       title: "Functional Art",
       description: "Artistic yet functional metal creations for everyday use",
-      status: "Custom Order",
       image: chainImg
     },
     {
       icon: <FaPaintBrush className="w-6 h-6" />,
       title: "Architectural Elements",
       description: "Decorative metal elements for architectural applications",
-      status: "Available",
       image: frameImg
     },
     {
-    icon: <FaCouch className="w-6 h-6" />,
-    title: "Outdoor Furniture",
-    description: "Handcrafted metal-wood fusion bench for elegant outdoor relaxation",
-    status: "Available",
-    image: furnImg
+    icon: <FaHome className="w-6 h-6" />,
+    title: "Modern Furniture",
+    description: "Contemporary metal furniture designs for homes and offices",
+    image: benchImg
   },
   {
     icon: <FaPalette className="w-6 h-6" />,
     title: "Cultural Artwork",
     description: "African Drummer - A majestic metal-wood sculpture celebrating African heritage, featuring a traditionally adorned woman drummer on a pedestal",
-    status: "Custom Order",
     image: drummerImg
   },
   {
     icon: <FaDesktop className="w-6 h-6" />,
     title: "Study Furniture",
     description: "Compact metal-wood study station featuring integrated lamp, pen holder, and clock for optimal productivity",
-    status: "Made to Order",
     image: studyImg
+  },
+  {
+    icon: <FaTractor className="w-6 h-6" />,
+    title: "Maize Planter",
+    description: "Efficient and robust equipment designed to simplify and speed up the maize planting process.",
+    images: [maizepImg, smaizeImg, fmaizeImg]
+  },
+  {
+    icon: <FaHome className="w-6 h-6" />, 
+    title: "Burglarproof Windows",
+    description: "Durable and stylish metal burglarproof designs for enhanced window security.",
+    images: [burgImg, sproofImg]
   }
   ];
 
@@ -102,45 +125,96 @@ const Products = () => {
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {products.map((product, index) => (
-            <div 
-              key={index}
-              className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2"
-              data-aos="fade-up"
-              data-aos-delay={index * 100}
-            >
-              <div className="relative h-48 rounded-t-xl overflow-hidden">
-                <img
-                  src={product.image}
-                  alt={product.title}
-                  className="w-full h-full object-contain hover:scale-105 transition-transform duration-500"
-                  style={{
-                    backgroundColor: '#f8f9fa',
-                    padding: '0.5rem'
-                  }}
-                  onError={(e) => {
-                    e.target.src = 'https://via.placeholder.com/400x300?text=Product+Image';
-                    console.error(`Failed to load image for ${product.title}`);
-                  }}
-                />
-              </div>
-              <div className="p-6">
-                <div className="flex items-center mb-4">
-                  <div className="text-cyan-500 mr-3">
-                    {product.icon}
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-bold text-gray-800">{product.title}</h3>
-                    {/* Removed product status */}
-                  </div>
+          {products.map((product, index) => {
+            // Determine if product has multiple images
+            const images = product.images || (product.image ? [product.image] : []);
+            const currentImg = images[currentIndexes[index] || 0];
+
+            return (
+              <div 
+                key={index}
+                className="bg-white rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-2"
+                data-aos="fade-up"
+                data-aos-delay={index * 100}
+              >
+                <div className="relative h-48 rounded-t-xl overflow-hidden flex items-center justify-center bg-gray-100">
+                  <img
+                    src={currentImg}
+                    alt={product.title}
+                    className="w-full h-full object-contain hover:scale-105 transition-transform duration-500 cursor-pointer"
+                    style={{
+                      backgroundColor: '#f8f9fa',
+                      padding: '0.5rem'
+                    }}
+                    onClick={() => {
+                      setModalImg(currentImg);
+                      setModalOpen(true);
+                    }}
+                    onError={(e) => {
+                      e.target.src = 'https://via.placeholder.com/400x300?text=Product+Image';
+                    }}
+                  />
                 </div>
-                <p className="text-gray-600">
-                  {product.description}
-                </p>
+                {/* Thumbnails for multiple images */}
+                {images.length > 1 && (
+                  <div className="flex justify-center gap-2 mt-2">
+                    {images.map((img, imgIdx) => (
+                      <img
+                        key={imgIdx}
+                        src={img}
+                        alt={`Thumbnail ${imgIdx + 1}`}
+                        className={`w-8 h-8 object-cover rounded cursor-pointer border-2 ${
+                          imgIdx === (currentIndexes[index] || 0)
+                            ? "border-cyan-500"
+                            : "border-transparent"
+                        }`}
+                        onClick={() => {
+                          setCurrentIndexes(prev => {
+                            const newIndexes = [...prev];
+                            newIndexes[index] = imgIdx;
+                            return newIndexes;
+                          });
+                        }}
+                      />
+                    ))}
+                  </div>
+                )}
+                <div className="p-6">
+                  <div className="flex items-center mb-4">
+                    <div className="text-cyan-500 mr-3">
+                      {product.icon}
+                    </div>
+                    <div>
+                      <h3 className="text-xl font-bold text-gray-800">{product.title}</h3>
+                    </div>
+                  </div>
+                  <p className="text-gray-600">
+                    {product.description}
+                  </p>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
+
+        {/* Modal for large image view */}
+        {modalOpen && (
+          <div className="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-50">
+            <div className="relative">
+              <img
+                src={modalImg}
+                alt="Large view"
+                className="max-w-full max-h-[80vh] rounded-lg"
+              />
+              <button
+                onClick={() => setModalOpen(false)}
+                className="absolute top-2 right-2 bg-white text-black rounded-full px-3 py-1 font-bold"
+              >
+                &times;
+              </button>
+            </div>
+          </div>
+        )}
 
         <div className="text-center mt-12" data-aos="fade-up">
           {/* Custom Order CTA with Call & WhatsApp options */}
