@@ -1,7 +1,7 @@
-import React, { useContext, useState } from 'react';
+import React, { useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 // import { CartContext } from '../context/CartContext';
-import { FaArrowUp, FaBars, FaShoppingCart, FaTimes } from 'react-icons/fa';
+import { FaArrowUp, FaBars,  FaTimes } from 'react-icons/fa';
 import { useScrollToTop } from '../hooks/useScrollToTop';
 import logo from '../assets/images/fab-logo.jpg'; 
 
@@ -56,11 +56,11 @@ const Header = () => {
               >
                 Products
               </Link>
-              {/* <Link to="/shop" className="hover:text-blue-300 transition-colors">
-                Shop
-              </Link> */}
-              <Link to="/blog" className="hover:text-blue-300 transition-colors">
-                Blog
+              <Link 
+                to="/training"
+                className="hover:text-blue-300 transition-colors"
+              >
+                Training
               </Link>
               <Link 
                 to="/"
@@ -93,7 +93,7 @@ const Header = () => {
             </button>
           </div>
 
-          {/* Update mobile menu */}
+          {/* Update mobile menu with new training path */}
           {isOpen && (
             <nav className="md:hidden mt-4 space-y-2">
               <Link 
@@ -117,22 +117,15 @@ const Header = () => {
               >
                 Products
               </Link>
-              {/* <Link 
-                to="/shop" 
-                onClick={() => setIsOpen(false)}
-                className="block py-2 hover:text-blue-300"
-              >
-                Shop
-              </Link> */}
               <Link 
-                to="/blog" 
+                to="/training"
                 onClick={() => setIsOpen(false)}
                 className="block py-2 hover:text-blue-300"
               >
-                Blog
+                Training
               </Link>
               <Link 
-                to="/"
+                to="/training"
                 onClick={() => handleNavClick('contact')}
                 className="block py-2 hover:text-blue-300"
               >
