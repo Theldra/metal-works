@@ -12,7 +12,7 @@ import About from './components/About';
 import Products from './components/Products';
 import Contact from './components/Contact';
 import Gallery from './pages/Gallery';
-import Training from './components/Training';
+import Training from './pages/Training';
 
 function App() {
   useEffect(() => {
@@ -34,7 +34,7 @@ function App() {
             <Route path="/products" element={<Products />} />
             <Route path="/contact" element={<Contact />} />
             <Route path="/gallery" element={<Gallery/>} />
-            <Route path="/training" element={<Training/>} />
+            <Route path="/training" element={<Training />} />
           </Routes>
           <Footer />
           {/* <ShoppingCart /> */}
